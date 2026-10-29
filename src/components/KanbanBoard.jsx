@@ -11,34 +11,43 @@ const columns = [
 ];
 
 const KanbanBoard = () => {
-  const tasks = useSelector((state) => state.tasks.tasks);
-
-  const { search, priorityFilter, statusFilter } = useSelector(
+  const { tasks, search, priorityFilter, statusFilter } = useSelector(
     (state) => state.tasks,
   );
+  console.log({
+    search,
+    priorityFilter,
+    statusFilter,
+    tasks,
+  });
 
   const [showForm, setShowForm] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
 
+  // Open form for adding a task
   const openAddForm = () => {
     setEditingTask(null);
     setShowForm(true);
   };
 
+  // Open form for editing a task
   const openEditForm = (task) => {
     setEditingTask(task);
     setShowForm(true);
   };
 
+  // Close form
   const closeForm = () => {
     setShowForm(false);
     setEditingTask(null);
   };
 
+  // Search and filter tasks
   const filteredTasks = tasks.filter((task) => {
-    const matchesSearch = task.title
-      .toLowerCase()
-      .includes(search.trim().toLowerCase());
+    const taskTitle = (task.title || "").toLowerCase();
+    const searchText = search.trim().toLowerCase();
+
+    const matchesSearch = taskTitle.includes(searchText);
 
     const matchesPriority =
       priorityFilter === "All" || task.priority === priorityFilter;
@@ -49,8 +58,11 @@ const KanbanBoard = () => {
     return matchesSearch && matchesPriority && matchesStatus;
   });
 
+  console.log("Filtered tasks:", filteredTasks);
+
   return (
     <div>
+      {/* Board Header */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-800">Your Tasks</h2>
@@ -69,14 +81,17 @@ const KanbanBoard = () => {
         </button>
       </div>
 
+      {/* Search and Filters */}
       <TaskFilters />
 
+      {/* Add/Edit Task Form */}
       {showForm && (
         <div className="mb-6">
           <TaskForm editingTask={editingTask} onClose={closeForm} />
         </div>
       )}
 
+      {/* No Search Results */}
       {tasks.length > 0 && filteredTasks.length === 0 && (
         <div className="mb-5 rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
           <h3 className="font-semibold text-slate-800">
@@ -89,6 +104,18 @@ const KanbanBoard = () => {
         </div>
       )}
 
+      {/* Empty Board */}
+      {tasks.length === 0 && (
+        <div className="mb-5 rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center">
+          <h3 className="font-semibold text-slate-800">No tasks yet</h3>
+
+          <p className="mt-2 text-sm text-slate-500">
+            Click Add Task to create your first task.
+          </p>
+        </div>
+      )}
+
+      {/* Kanban Columns */}
       <main className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
         {columns.map((column) => {
           const columnTasks = filteredTasks.filter(

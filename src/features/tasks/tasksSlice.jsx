@@ -12,18 +12,16 @@ const tasksSlice = createSlice({
   initialState,
 
   reducers: {
-    // Add new task
     addTask: {
       reducer(state, action) {
         state.tasks.push(action.payload);
       },
-
       prepare(task) {
         return {
           payload: {
             id: nanoid(),
             title: task.title.trim(),
-            description: task.description.trim(),
+            description: (task.description || "").trim(),
             priority: task.priority,
             dueDate: task.dueDate || "",
             status: "Todo",
@@ -32,45 +30,37 @@ const tasksSlice = createSlice({
       },
     },
 
-    // Update existing task
     updateTask(state, action) {
       const { id, ...updatedData } = action.payload;
+      const task = state.tasks.find((item) => item.id === id);
 
-      const existingTask = state.tasks.find((task) => task.id === id);
-
-      if (existingTask) {
-        Object.assign(existingTask, updatedData);
+      if (task) {
+        Object.assign(task, updatedData);
       }
     },
 
-    // Delete task
     deleteTask(state, action) {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
 
-    // Update task search
     setSearch(state, action) {
       state.search = action.payload;
     },
 
-    // Filter tasks by priority
     setPriorityFilter(state, action) {
       state.priorityFilter = action.payload;
     },
 
-    // Filter tasks by status
     setStatusFilter(state, action) {
       state.statusFilter = action.payload;
     },
 
-    // Reset all filters
     resetFilters(state) {
       state.search = "";
       state.priorityFilter = "All";
       state.statusFilter = "All";
     },
 
-    // Load tasks from LocalStorage or another source
     setTasks(state, action) {
       state.tasks = action.payload;
     },

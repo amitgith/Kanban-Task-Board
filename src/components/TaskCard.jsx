@@ -1,3 +1,5 @@
+import TaskActions from "./TaskActions";
+
 const priorityStyles = {
   High: "bg-red-100 text-red-700",
   Medium: "bg-amber-100 text-amber-700",
@@ -5,15 +7,19 @@ const priorityStyles = {
 };
 
 const TaskCard = ({ task, onEdit }) => {
+  if (!task) {
+    return null;
+  }
+
   return (
     <article className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span
           className={`rounded-md px-2 py-1 text-xs font-semibold ${
-            priorityStyles[task.priority]
+            priorityStyles[task.priority] || priorityStyles.Medium
           }`}
         >
-          {task.priority}
+          {task.priority || "Medium"}
         </span>
 
         <span className="text-xs text-slate-500">
