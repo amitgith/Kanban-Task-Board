@@ -8,16 +8,8 @@ import {
 const TaskFilters = () => {
   const dispatch = useDispatch();
 
-  const { tasks,search, priorityFilter, statusFilter } = useSelector(
+  const { search, priorityFilter, statusFilter } = useSelector(
     (state) => state.tasks,
-  );
-  console.log(
-    "All tasks:",
-    tasks.map((task) => ({
-      title: task.title,
-      priority: task.priority,
-      status: task.status,
-    }))
   );
 
   const inputClass =
@@ -37,6 +29,7 @@ const TaskFilters = () => {
       <select
         value={priorityFilter}
         onChange={(event) => dispatch(setPriorityFilter(event.target.value))}
+        aria-label="Filter by priority"
         className={inputClass}
       >
         <option value="All">All Priorities</option>
@@ -48,6 +41,7 @@ const TaskFilters = () => {
       <select
         value={statusFilter}
         onChange={(event) => dispatch(setStatusFilter(event.target.value))}
+        aria-label="Filter by status"
         className={inputClass}
       >
         <option value="All">All Statuses</option>
