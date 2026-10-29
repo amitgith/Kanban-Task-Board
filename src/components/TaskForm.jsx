@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addTask, updateTask } from "../features/task/taskSlice";
+import { addTask, updateTask } from "../features/tasks/tasksSlice";
 
 const defaultValues = {
   title: "",
