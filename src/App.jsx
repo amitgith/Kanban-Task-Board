@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import KanbanBoard from "./components/KanbanBoard";
 import { setTasks } from "./features/tasks/tasksSlice";
 import { useEffect, useState } from "react";
+import  { Toaster } from "react-hot-toast";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+        <Toaster />
         <Header />
         <KanbanBoard />
       </div>

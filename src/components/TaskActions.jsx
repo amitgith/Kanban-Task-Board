@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../features/tasks/tasksSlice";
+import toast from "react-hot-toast";
 
 export default function TaskActions({ task, onEdit }) {
   const dispatch = useDispatch();
@@ -14,11 +15,8 @@ export default function TaskActions({ task, onEdit }) {
   };
 
   const handleDelete = () => {
-    const confirmed = window.confirm(`Delete "${task.title}"?`);
-
-    if (confirmed) {
-      dispatch(deleteTask(task.id));
-    }
+    dispatch(deleteTask(task.id));
+    toast.success("Task deleted successfully!");
   };
 
   return (

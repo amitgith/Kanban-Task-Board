@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addTask, updateTask } from "../features/tasks/tasksSlice";
+import toast from "react-hot-toast";
 
 const defaultValues = {
   title: "",
@@ -38,8 +39,10 @@ export default function TaskForm({ editingTask, onClose }) {
   const onSubmit = (data) => {
     if (editingTask) {
       dispatch(updateTask({ ...data, id: editingTask.id }));
+      toast.success("Task update successfully!");
     } else {
       dispatch(addTask(data));
+      toast.success("Task added successfully!");
     }
 
     reset(defaultValues);
@@ -116,7 +119,7 @@ export default function TaskForm({ editingTask, onClose }) {
 
           <select
             {...register("priority", { required: true })}
-            className={inputClass}
+            className={`${inputClass} cursor-pointer`}
           >
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
