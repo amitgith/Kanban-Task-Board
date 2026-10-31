@@ -63,7 +63,7 @@ const KanbanBoard = () => {
         <button
           type="button"
           onClick={openAddForm}
-          className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+          className="rounded-xl bg-blue-600 px-4 cursor-pointer py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
         >
           + Add Task
         </button>

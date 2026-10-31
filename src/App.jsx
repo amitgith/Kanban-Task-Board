@@ -1,6 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
 import Header from "./components/Header";
 import KanbanBoard from "./components/KanbanBoard";
 import { setTasks } from "./features/tasks/tasksSlice";
+import { useEffect, useState } from "react";
 
 const App = () => {
   const dispatch = useDispatch();

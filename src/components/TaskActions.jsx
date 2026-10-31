@@ -37,7 +37,7 @@ export default function TaskActions({ task, onEdit }) {
       <button
         type="button"
         onClick={() => onEdit(task)}
-        className="rounded-lg px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-50"
+        className="rounded-lg px-3 py-2 text-xs cursor-pointer font-semibold text-blue-700 hover:bg-blue-50"
       >
         Edit
       </button>
@@ -45,7 +45,7 @@ export default function TaskActions({ task, onEdit }) {
       <button
         type="button"
         onClick={handleDelete}
-        className="rounded-lg px-3 py-2 text-xs font-semibold text-red-600 hover:bg-red-50"
+        className="rounded-lg px-3 py-2 text-xs cursor-pointer font-semibold text-red-600 hover:bg-red-50"
       >
         Delete
       </button>

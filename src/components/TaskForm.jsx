@@ -135,14 +135,14 @@ export default function TaskForm({ editingTask, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+          className="rounded-lg border cursor-pointer border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+          className="rounded-lg bg-blue-600  cursor-pointer px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
         >
           {editingTask ? "Save Changes" : "Add Task"}
         </button>

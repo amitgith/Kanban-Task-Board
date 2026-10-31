@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import TaskActions from "./TaskActions";
->>>>>>> e861065 (feat: add localStorage persistence to kanban tasks)
 const priorityStyles = {
   High: "bg-red-100 text-red-700",
   Medium: "bg-amber-100 text-amber-700",
